@@ -1,2 +1,2 @@
 # 忽略 .class 檔案
-*.class
+./**/*.class
