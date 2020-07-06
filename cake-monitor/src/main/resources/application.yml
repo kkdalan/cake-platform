@@ -1,0 +1,14 @@
+#tomcat
+server:
+  port: 8000
+  
+spring:
+  application:
+    name: cake-monitor
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        serviceName: ${spring.application.name}   #註冊到consul的服務名稱
+    

@@ -1,0 +1,31 @@
+{
+    "common": {
+        "home": "首頁",
+        "login": "登錄",
+        "logout": "退出登錄",
+        "doc": "文件",
+        "blog": "部落格",
+        "projectRepo": "專案",
+        "myMsg": "我的訊息",
+        "config": "系統配置",           
+        "backup": "備份",
+        "restore": "還原",
+        "backupRestore": "備份還原",
+        "versionName": "版本名稱",             
+        "exit": "退出"
+    },
+    "action": {
+        "operation": "操作",
+        "add": "新增",
+        "edit": "編輯",
+        "delete": "刪除",
+        "batchDelete": "整批刪除",
+        "search": "查詢",
+        "loading": "系統載入中",
+        "submit": "送出",
+        "comfirm": "確定",
+        "cancel": "取消",
+        "reset": "重設"
+        
+    }
+}

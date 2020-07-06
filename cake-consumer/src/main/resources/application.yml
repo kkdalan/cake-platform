@@ -1,0 +1,40 @@
+#tomcat
+server:
+  port: 8005
+spring:
+  application:
+    name: cake-consumer
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        serviceName: ${spring.application.name} # 註冊到consul的服務名稱
+  boot:
+    admin:
+      client:
+        url: "http://localhost:8000"
+        instance:
+          service-base-url: "http://localhost:8000"
+  zipkin:
+    base-url: http://localhost:9411/
+  sleuth:
+    sampler:
+      probability: 1 #样本采集量，默认为0.1，为了测试这里修改为1，正式环境一般使用默认值。
+# ribbon 負載均衡策略配置
+cake-producer:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+# 开放健康检查接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+#開啟熔斷器
+feign:
+  hystrix:
+    enabled: true

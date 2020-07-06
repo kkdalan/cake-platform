@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 指定連線資料庫時所需要的JDBC driver的檔案位置 -->
+	<classPathEntry location="/Users/alan/.m2/repository/mysql/mysql-connector-java/8.0.20/mysql-connector-java-8.0.20-sources.jar" />
+	<context id="cake_mybatis_generator"
+        defaultModelType="flat" targetRuntime="MyBatis3"><!-- 產生的model為flat型式。產生傳統的MyBatis Mapper及可，不要產生新的Example檔 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" /><!-- 不要產生MBG的註解 -->
+            <property name="suppressDate" value="true" /><!-- 不要產生日期註解 -->
+        </commentGenerator>
+
+		<!-- 資料庫連線設定 -->
+		<jdbcConnection 
+			driverClass="com.mysql.cj.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/cake" 
+			userId="root" 
+			password="123456" >
+			<property name="nullCatalogMeansCurrent" value="true" /><!-- MySQL不支援schema及catelog的設定 -->
+		</jdbcConnection>
+
+		<javaTypeResolver>
+            <property name="useJSR310Types" value="true" /><!-- 日期或時間戳記不使用java.util.Date，改用Java 8的java.time.LocalDate -->
+        </javaTypeResolver>
+        
+        <!-- 要產生的model位置，targetProject的值為專案的Source folder，所以是cake-admin/src/main/java -->
+        <javaModelGenerator targetPackage="com.alan.cake.admin.model" targetProject="cake-admin/src/main/java" />
+        
+        <!-- 要產生的MyBatis Mapper位置 --> 
+        <sqlMapGenerator targetPackage="com.alan.cake.admin.sqlmap" targetProject="cake-admin/src/main/java" />
+        
+        <!-- 要產生的MyBatis Dao位置 -->      
+        <javaClientGenerator targetPackage="com.alan.cake.admin.dao" targetProject="cake-admin/src/main/java" type="XMLMAPPER" /><!-- MyBatis Mapper設為xml格式 -->
+        
+        <!-- 要生成的資料表 -->
+		<table schema="cake" tableName="%">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+	</context>
+</generatorConfiguration>

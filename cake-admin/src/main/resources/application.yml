@@ -1,0 +1,52 @@
+#tomcat
+server:
+  port: 8001
+spring:
+  application:
+    name: cake-admin
+  boot:
+    admin:
+      client:
+        url: "http://localhost:8000"
+  datasource:
+    name: druidDataSource
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/cake?userUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimeout=GMT
+      username: root
+      password: 123456
+      filters: stat,wall,log4j,config
+      max-active: 100
+      initial-size: 1
+      max-wait: 60000
+      min-idle: 1
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 'x'
+      test-on-borrow: true
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 50
+      max-pool-prepared-statement-per-connection-size: 20
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        serviceName: ${spring.application.name}   #註冊到consul的服務名稱
+# pagehelper
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+#開放健康檢查介面
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

@@ -1,0 +1,33 @@
+#tomcat
+server:
+  port: 8002
+spring:
+  application:
+    name: cake-backup
+  boot:
+    admin:
+      client:
+        url: "http://localhost:8000"
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        serviceName: ${spring.application.name}   #註冊到consul的服務名稱
+#開放健康檢查介面
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+#backup datasource
+cake:
+  backup:
+    datasource:
+      host: localhost
+      username: root
+      password: 123456
+      database: cake

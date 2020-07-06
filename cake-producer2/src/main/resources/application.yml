@@ -1,0 +1,25 @@
+#tomcat
+server:
+  port: 8004
+spring:
+  application:
+    name: cake-producer
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        serviceName: ${spring.application.name} # 註冊到consul的服務名稱
+  boot:
+    admin:
+      client:
+        url: "http://localhost:8000"
+# 开放健康检查接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
